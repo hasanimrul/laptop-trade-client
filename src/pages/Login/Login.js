@@ -4,12 +4,13 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
-    const { updateUserProfile, signIn, signInWithGoogle, setLoading } = useContext(AuthContext)
+    const { updateUserProfile, signIn, signInWithGoogle, setLoading, loading } = useContext(AuthContext)
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from.pathname || '/'
 
     const handleSubmit = (event) => {
+
         event.preventDefault()
         const form = event.target;
         const email = form.email.value;

@@ -20,7 +20,7 @@ const ErrorPage = () => {
                         Sorry, we couldn't find this page.
                     </p>
                     <Link to='/'>
-                        <button className='btn px-8 py-3 font-semibold rounded'>
+                        <button className='btn bg-gray-900 px-8 py-3 font-semibold rounded'>
                             Back to homepage
                         </button>
                     </Link>
