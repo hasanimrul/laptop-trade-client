@@ -3,7 +3,7 @@ import React from 'react';
 const AdvertisedItems = () => {
     return (
         <div>
-
+            Advertisement Area
         </div>
     );
 };
