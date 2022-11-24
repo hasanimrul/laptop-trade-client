@@ -1,10 +1,17 @@
-import React from 'react';
-import App from '../../../App';
-import Apple from './Apple';
-import Asus from './Asus';
-import Lenovo from './Lenovo';
+import React, { useEffect, useState } from 'react';
+import CategoryCard from './CategoryCard';
 
 const ProductCategory = () => {
+    const [categories, setCategories] = useState([])
+
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_SERVER_URL}/categories`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setCategories(data)
+            })
+    }, [])
     return (
         <div className='my-10'>
             <div className='flex items-center my-8 space-x-1'>
@@ -15,9 +22,12 @@ const ProductCategory = () => {
                 <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
             </div>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
-                <Apple />
-                <Asus />
-                <Lenovo />
+                {
+                    categories.map(category => <CategoryCard
+                        key={category._id}
+                        category={category}
+                    ></CategoryCard>)
+                }
             </div>
         </div>
     );
