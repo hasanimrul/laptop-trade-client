@@ -21,11 +21,15 @@ const AddAProduct = () => {
         const location = event.target.location.value
         const image = event.target.image.files[0]
 
+        const categoryName = category.split("-")[0]
+        const categoryId = category.split("-")[1]
+
         imageUpload(image)
             .then(res => {
                 const productData = {
                     productName,
-                    category,
+                    categoryName,
+                    categoryId,
                     price,
                     description,
                     year,
@@ -33,6 +37,7 @@ const AddAProduct = () => {
                     number,
                     location,
                     image: res.data.display_url
+
                 }
                 addProduct(productData)
                     .then(data => {

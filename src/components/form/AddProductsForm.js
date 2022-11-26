@@ -25,9 +25,9 @@ const AddProductsForm = ({ handleSubmit }) => {
                         </div>
                         <select name='category' className="select select-bordered w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-gray-900 bg-gray-200 text-gray-900 w-full">
                             <option disabled selected>Category</option>
-                            <option>Apple</option>
-                            <option>Asus</option>
-                            <option>Lenovo</option>
+                            <option>Apple-637ef649345d495b77336546</option>
+                            <option>Asus-637ef649345d495b77336547</option>
+                            <option>Lenovo-637ef649345d495b77336548</option>
                         </select>
                         <div className='space-y-1 text-sm'>
                             <label htmlFor='price' className='block text-gray-600'>
