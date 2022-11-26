@@ -32,7 +32,10 @@ const Navbar = () => {
             <div className="navbar-end">
 
                 {user?.email ?
-                    <Link to='/' onClick={() => logOut()} className="btn">log out</Link>
+                    <>
+                        <Link to='/' onClick={() => logOut()} className="btn">log out</Link>
+                        <Link to='/dashboard' className="btn">Dashboard</Link>
+                    </>
                     :
                     <Link to='/login' className="btn">Log in</Link>}
             </div>

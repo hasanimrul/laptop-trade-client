@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import { saveUser } from '../../api/users';
 
 const Signup = () => {
 
@@ -23,7 +24,6 @@ const Signup = () => {
         const role = event.target.role.value
         const email = event.target.email.value
         const password = event.target.password.value
-        console.log(role, name, email);
 
         // Image Upload
         const image = event.target.image.files[0]
@@ -42,7 +42,8 @@ const Signup = () => {
                     .then(result => {
                         updateUserProfile(name, imageData.data.display_url)
                             .then(res => {
-                                toast.success('Sign up Successfull')
+                                saveUser(name, email, role)
+                                toast.success('Sign up Successful')
                                 setLoading(false)
                                 navigate(from, { replace: true })
                             }
@@ -58,6 +59,7 @@ const Signup = () => {
             .catch(err => console.log(err))
     }
 
+
     const handleGoogleSignin = () => {
         signInWithGoogle()
             .then(result => {
@@ -66,6 +68,7 @@ const Signup = () => {
                 navigate(from, { replace: true })
             })
     }
+
     return (
         <div className='flex justify-center items-center my-8'>
             <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>

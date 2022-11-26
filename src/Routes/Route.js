@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import DashboardLayout from "../layout/DashboardLayout";
 import Main from "../layout/Main";
 import AllProducts from "../pages/AllProducts/AllProducts";
 import AddAProduct from "../pages/Dashboard/SellerDashboard/AddAProduct";
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`${process.env.REACT_APP_SERVER_URL}/category/${params.id}`)
             }
         ]
+    },
+    {
+        path: '/dashboard',
+        element: <DashboardLayout />
     },
     {
         path: '*',
