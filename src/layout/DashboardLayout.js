@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
+import { getRole } from '../api/users';
 import Sidebar from '../components/Dashboard/Sidebar';
 import { AuthContext } from '../contexts/AuthProvider/AuthProvider';
 
@@ -9,10 +10,11 @@ const DashboardLayout = () => {
     const [loading, setLoading] = useState(true)
     useEffect(() => {
         setLoading(true)
-        // getRole(user?.email).then(data => {
-        //     setRole(data)
-        //     setLoading(false)
-        // })
+        getRole(user?.email)
+            .then(data => {
+                setRole(data)
+                setLoading(false)
+            })
     }, [user])
     return (
         <div className='relative min-h-screen md:flex'>

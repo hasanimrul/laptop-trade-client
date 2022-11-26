@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import SmallSpinner from '../../components/Spinner/SmallSpinner';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
@@ -97,8 +98,7 @@ const Login = () => {
                             type='submit'
                             className='btn w-full px-8 py-3 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'
                         >
-                            {/* {loading ? <SmallSpinner /> : 'Sign in'} */}
-                            Log in
+                            {loading ? <SmallSpinner /> : 'Sign in'}
                         </button>
                     </div>
                 </form>

@@ -16,12 +16,28 @@ export const saveUser = async (name, email, role) => {
 //  get all users
 
 export const getAllUsers = async () => {
-    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/users`, {
-        method: 'GET',
-        headers: {
-            'content/type': 'application/json'
-        },
-    })
+    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/users`,
+        {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json'
+            },
+        })
     const users = await response.json()
     return users
 }
+
+// get single user role
+export const getRole = async email => {
+    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/user/${email}`,
+        {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+    const user = await response.json()
+    return user?.role
+}
+
+

@@ -3,11 +3,11 @@ import toast from 'react-hot-toast';
 import { useLoaderData } from 'react-router-dom';
 import { imageUpload } from '../../../api/imageUpload';
 import { addProduct } from '../../../api/products';
-import AddProductsForm from '../../../components/form/AddProductsForm';
+import AddProductsForm from '../BuyerDashboard/AddProductsForm';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const AddAProduct = () => {
-    const { setLoading } = useContext(AuthContext)
+    const { setLoading, user } = useContext(AuthContext)
 
     const handleSubmit = (event) => {
 
@@ -42,7 +42,8 @@ const AddAProduct = () => {
                     number,
                     location,
                     image: res.data.display_url,
-                    postTime
+                    postTime,
+                    buyerEmail: user?.email
 
                 }
                 addProduct(productData)
