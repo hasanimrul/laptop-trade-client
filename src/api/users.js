@@ -40,4 +40,18 @@ export const getRole = async email => {
     return user?.role
 }
 
+// delete a user
+
+export const deleteUser = async id => {
+    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/user/${id}`,
+        {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+    const result = await response.json()
+    return result
+}
+
 

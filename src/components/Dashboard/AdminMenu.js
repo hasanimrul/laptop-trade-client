@@ -1,4 +1,4 @@
-import { FingerPrintIcon, UserPlusIcon } from '@heroicons/react/24/solid';
+import { UsersIcon } from '@heroicons/react/24/solid';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
@@ -12,8 +12,7 @@ const AdminMenu = () => {
                     }`
                 }
             >
-                <FingerPrintIcon className='w-5 h-5' />
-
+                <UsersIcon className='w-5 h-5' />
                 <span className='mx-4 font-medium'>All Users</span>
             </NavLink>
 

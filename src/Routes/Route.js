@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../layout/DashboardLayout";
 import Main from "../layout/Main";
 import AllProducts from "../pages/AllProducts/AllProducts";
-import AllUsers from "../pages/Dashboard/AllUsers";
+import AllUsers from "../pages/Dashboard/AdminDashboard/AllUsers";
 import AddAProduct from "../pages/Dashboard/SellerDashboard/AddAProduct";
 import ManageProducts from "../pages/Dashboard/SellerDashboard/ManageProducts";
 import ErrorPage from "../pages/ErrorPage";

@@ -19,7 +19,7 @@ const ProductsDataRow = ({ product, fetchProducts }) => {
             .then(data => {
                 console.log(data)
                 fetchProducts()
-                toast.success('Home deleted')
+                toast.success('Product deleted')
             })
             .catch(err => console.log(err))
         closeModal()

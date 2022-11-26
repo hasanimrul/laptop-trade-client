@@ -1,19 +1,18 @@
+
 import React, { useEffect, useState } from 'react';
-import { getAllUsers } from '../../api/users';
-import SmallSpinner from '../../components/Spinner/SmallSpinner';
+import toast from 'react-hot-toast';
+import { deleteUser, getAllUsers } from '../../../api/users';
+import SmallSpinner from '../../../components/Spinner/SmallSpinner';
+import DeleteUser from './DeleteUser';
 
 const AllUsers = () => {
     const [loading, setLoading] = useState(false)
     const [users, setUsers] = useState([])
+    console.log(users);
     useEffect(() => {
         getUsers()
     }, [])
-    //     const handleRequest = user => {
-    //         makeHost(user).then(data => {
-    //             console.log(data)
-    //             getUsers()
-    //         })
-    // }
+
     const getUsers = () => {
         setLoading(true)
         getAllUsers()
@@ -21,6 +20,27 @@ const AllUsers = () => {
                 setUsers(data)
                 setLoading(false)
             })
+    }
+
+    let [isOpen, setIsOpen] = useState(false)
+    const fetchUsers = () => getAllUsers().then(data => setUsers(data))
+
+    function openModal() {
+        setIsOpen(true)
+    }
+    function closeModal() {
+        setIsOpen(false)
+    }
+    const modalHandler = id => {
+        console.log(id)
+        deleteUser(id)
+            .then(data => {
+                console.log(data)
+                fetchUsers()
+                toast.success('User deleted')
+            })
+            .catch(err => console.log(err))
+        closeModal()
     }
     return (
         <div className='container mx-auto px-4 sm:px-8'>
@@ -65,21 +85,24 @@ const AllUsers = () => {
                                                     {user?.role ? user.role : 'User'}
                                                 </p>
                                             </td>
+
                                             <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                                                {user?.role && user.role === 'requested' && (
+                                                <span
+                                                    onClick={openModal}
+                                                    className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
+                                                >
                                                     <span
-                                                        // onClick={() => handleRequest(user)}
-                                                        className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
-                                                    >
-                                                        <span
-                                                            aria-hidden='true'
-                                                            className='absolute inset-0 bg-green-200 opacity-50 rounded-full'
-                                                        ></span>
-                                                        <span className='relative'>
-                                                            {loading ? <SmallSpinner /> : ' Approve Request'}
-                                                        </span>
-                                                    </span>
-                                                )}
+                                                        aria-hidden='true'
+                                                        className='absolute inset-0 bg-red-200 opacity-50 rounded-full'
+                                                    ></span>
+                                                    <span className='relative'>Delete</span>
+                                                </span>
+                                                <DeleteUser
+                                                    isOpen={isOpen}
+                                                    closeModal={closeModal}
+                                                    modalHandler={modalHandler}
+                                                    id={user._id}
+                                                />
                                             </td>
                                         </tr>
                                     ))}

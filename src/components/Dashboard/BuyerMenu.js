@@ -14,7 +14,7 @@ const BuyerMenu = () => {
             >
                 <FingerPrintIcon className='w-5 h-5' />
 
-                <span className='mx-4 font-medium'>My Bookings</span>
+                <span className='mx-4 font-medium'>My Orders</span>
             </NavLink>
 
             {/* <NavLink
