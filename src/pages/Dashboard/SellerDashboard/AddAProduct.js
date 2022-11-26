@@ -3,8 +3,8 @@ import toast from 'react-hot-toast';
 import { useLoaderData } from 'react-router-dom';
 import { imageUpload } from '../../../api/imageUpload';
 import { addProduct } from '../../../api/products';
-import AddProductsForm from '../BuyerDashboard/AddProductsForm';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import AddProductsForm from './AddProductsForm';
 
 const AddAProduct = () => {
     const { setLoading, user } = useContext(AuthContext)

@@ -26,3 +26,16 @@ export const getProducts = async email => {
     const data = await response.json()
     return data
 }
+
+// delete a product
+
+export const deleteProduct = async id => {
+    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/product/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'content-type': 'application/json',
+        },
+    })
+    const result = await response.json()
+    return result
+}
