@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const AllProductsCard = ({ product }) => {
+const AllProductsCard = ({ product, setAllProducts }) => {
     const { productName, categoryName, price, description, year, condition, number, location, image } = product;
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
@@ -18,7 +18,7 @@ const AllProductsCard = ({ product }) => {
                     <div className="badge badge-outline">${price}</div>
                     <div className="badge badge-outline">{location}</div>
                 </div>
-                <label htmlFor="booking-modal" className="btn">Book now</label>
+                <label htmlFor="booking-modal" onClick={() => setAllProducts(product)} className="btn">Book now</label>
             </div>
         </div>
     );

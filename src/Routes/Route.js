@@ -25,17 +25,13 @@ export const router = createBrowserRouter([
                 element: <Login />
             },
             {
-                path: '/category/:id',
-                element: <AllProducts />
-            },
-            {
                 path: '/add-products',
                 element: <AddAProduct />,
             },
             {
-                path: '/all-products/:id',
+                path: '/category/:id',
                 element: <AllProducts />,
-                loader: ({ params }) => fetch(`${process.env.REACT_APP_SERVER_URL}/all-products/${params.id}`)
+                loader: ({ params }) => fetch(`${process.env.REACT_APP_SERVER_URL}/category/${params.id}`)
             }
         ]
     },

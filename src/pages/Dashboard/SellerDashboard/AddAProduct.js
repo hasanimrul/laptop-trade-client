@@ -10,10 +10,12 @@ const AddAProduct = () => {
     const { setLoading } = useContext(AuthContext)
 
     const handleSubmit = (event) => {
+
         event.preventDefault()
         const productName = event.target.name.value
         const category = event.target.category.value
-        const price = event.target.price.value
+        const originalPrice = event.target.originalPrice.value
+        const resalePrice = event.target.resalePrice.value
         const description = event.target.description.value
         const year = event.target.year.value
         const condition = event.target.condition.value
@@ -23,6 +25,8 @@ const AddAProduct = () => {
 
         const categoryName = category.split("-")[0]
         const categoryId = category.split("-")[1]
+        const postTime = new Date()
+
 
         imageUpload(image)
             .then(res => {
@@ -30,13 +34,15 @@ const AddAProduct = () => {
                     productName,
                     categoryName,
                     categoryId,
-                    price,
+                    originalPrice,
+                    resalePrice,
                     description,
                     year,
                     condition,
                     number,
                     location,
-                    image: res.data.display_url
+                    image: res.data.display_url,
+                    postTime
 
                 }
                 addProduct(productData)

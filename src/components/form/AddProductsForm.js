@@ -1,4 +1,3 @@
-import { CalendarIcon } from '@heroicons/react/24/solid';
 import React from 'react';
 
 const AddProductsForm = ({ handleSubmit }) => {
@@ -30,12 +29,25 @@ const AddProductsForm = ({ handleSubmit }) => {
                             <option>Lenovo-637ef649345d495b77336548</option>
                         </select>
                         <div className='space-y-1 text-sm'>
-                            <label htmlFor='price' className='block text-gray-600'>
-                                Price
+                            <label htmlFor='originalPrice' className='block text-gray-600'>
+                                Original Price
                             </label>
                             <input
                                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-gray-900 bg-gray-200 text-gray-900'
-                                name='price'
+                                name='originalPrice'
+                                id='price'
+                                type='text'
+                                placeholder='$$$'
+                                required
+                            />
+                        </div>
+                        <div className='space-y-1 text-sm'>
+                            <label htmlFor='resalePrice' className='block text-gray-600'>
+                                Resale Price
+                            </label>
+                            <input
+                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-gray-900 bg-gray-200 text-gray-900'
+                                name='resalePrice'
                                 id='price'
                                 type='text'
                                 placeholder='$$$'
