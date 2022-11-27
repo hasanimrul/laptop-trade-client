@@ -16,12 +16,17 @@ const CheckoutForm = ({ booking }) => {
     const { price, name, email } = booking
     console.log(clientSecret)
     useEffect(() => {
-        getPaymentIntent(price).then(data => {
-            if (data?.clientSecret) {
-                setClientSecret(data.clientSecret)
-            }
-        })
+        getPaymentIntent(price)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data?.clientSecret) {
+                    setClientSecret(data.clientSecret)
+                }
+            })
     }, [price])
+
+
 
     const handleSubmit = async event => {
         event.preventDefault()
@@ -100,7 +105,7 @@ const CheckoutForm = ({ booking }) => {
                     }}
                 />
                 <button
-                    className=' mt-4 bg-gradient-to-r from-emerald-500 to-lime-500 rounded-md text-white px-4 py-1'
+                    className=' mt-4 btn rounded-md text-white px-4 py-1'
                     type='submit'
                     disabled={!stripe || !clientSecret || processing}
                 >

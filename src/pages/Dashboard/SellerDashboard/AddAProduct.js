@@ -43,7 +43,8 @@ const AddAProduct = () => {
                     location,
                     image: res.data.display_url,
                     postTime,
-                    buyerEmail: user?.email
+                    sellerName: user?.displayName,
+                    sellerEmail: user?.email
 
                 }
                 addProduct(productData)

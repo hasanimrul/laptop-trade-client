@@ -8,7 +8,7 @@ const Login = () => {
     const { updateUserProfile, signIn, signInWithGoogle, setLoading, loading } = useContext(AuthContext)
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from.pathname || '/'
+    const from = location.state?.from.pathname || '/dashboard'
 
     const handleSubmit = (event) => {
 
