@@ -1,6 +1,7 @@
 import React from 'react';
+import SmallSpinner from '../../../components/Spinner/SmallSpinner';
 
-const AddProductsForm = ({ handleSubmit }) => {
+const AddProductsForm = ({ handleSubmit, loading }) => {
     return (
         <>
             <div className='flex justify-center mt-6'>
@@ -140,8 +141,7 @@ const AddProductsForm = ({ handleSubmit }) => {
                             type='submit'
                             className='block w-full p-3 text-center font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gray-900 hover:bg-gray-500 hover:text-gray-100 focus:shadow-outline focus:outline-none'
                         >
-                            {/* {loading ? <SmallSpinner /> : 'Save & Continue'} */}
-                            Save and Continue
+                            {loading ? <SmallSpinner /> : 'Save & Continue'}
                         </button>
                     </form>
                 </div>

@@ -3,12 +3,15 @@ import DashboardLayout from "../layout/DashboardLayout";
 import Main from "../layout/Main";
 import AllProducts from "../pages/AllProducts/AllProducts";
 import AllUsers from "../pages/Dashboard/AdminDashboard/AllUsers";
+import MyOrders from "../pages/Dashboard/BuyerDashboard/MyOrders";
+import Payment from "../pages/Dashboard/Payment/Payment";
 import AddAProduct from "../pages/Dashboard/SellerDashboard/AddAProduct";
 import ManageProducts from "../pages/Dashboard/SellerDashboard/ManageProducts";
 import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
 import Signup from "../pages/Signup/Signup";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -30,7 +33,7 @@ export const router = createBrowserRouter([
 
             {
                 path: '/category/:id',
-                element: <AllProducts />,
+                element: <PrivateRoute><AllProducts /></PrivateRoute>,
                 loader: ({ params }) => fetch(`${process.env.REACT_APP_SERVER_URL}/category/${params.id}`)
             }
         ]
@@ -50,6 +53,15 @@ export const router = createBrowserRouter([
             {
                 path: 'manage-products',
                 element: <ManageProducts />,
+            },
+            {
+                path: 'my-orders',
+                element: <MyOrders />,
+            },
+            {
+                path: 'payment/:id',
+                element: <Payment />,
+                loader: ({ params }) => fetch(`${process.env.REACT_APP_SERVER_URL}/booking/${params.id}`)
             },
         ]
     },

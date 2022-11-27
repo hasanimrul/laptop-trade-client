@@ -39,3 +39,44 @@ export const deleteProduct = async id => {
     const result = await response.json()
     return result
 }
+
+// store booked products
+export const productBooking = async productData => {
+    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/booking`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+        },
+        body: JSON.stringify(productData),
+    })
+
+    const data = await response.json()
+    return data
+}
+
+// get booked products by email
+export const getBookedProducts = async email => {
+    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/bookings/${email}`,
+        {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+    const data = await response.json()
+    return data
+}
+
+// get single product 
+
+export const getSingleBookings = async id => {
+    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/bookings/${id}`,
+        {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+    const data = await response.json()
+    return data
+}

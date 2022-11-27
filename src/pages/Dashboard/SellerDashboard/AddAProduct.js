@@ -7,7 +7,7 @@ import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import AddProductsForm from './AddProductsForm';
 
 const AddAProduct = () => {
-    const { setLoading, user } = useContext(AuthContext)
+    const { loading, user, setLoading } = useContext(AuthContext)
 
     const handleSubmit = (event) => {
 
@@ -50,12 +50,13 @@ const AddAProduct = () => {
                     .then(data => {
                         toast.success('Product added')
                         event.target.reset()
+                        // setLoading(false)
                     })
             })
     }
     return (
         <div>
-            <AddProductsForm handleSubmit={handleSubmit} />
+            <AddProductsForm handleSubmit={handleSubmit} loading={loading} />
         </div>
     );
 };
