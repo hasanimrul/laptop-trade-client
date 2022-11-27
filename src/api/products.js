@@ -80,3 +80,35 @@ export const getSingleBookings = async id => {
     const data = await response.json()
     return data
 }
+
+// Create Payment Intent
+
+export const getPaymentIntent = async price => {
+    const response = await fetch(
+        `${process.env.REACT_APP_SERVER_URL}/create-payment-intent`,
+        {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify({ price }),
+        }
+    )
+
+    const data = await response.json()
+    return data
+}
+
+// store payment
+export const savePayment = async payment => {
+    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/payments`,
+        {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(payment)
+        })
+    const data = await response.json()
+    return data
+}
