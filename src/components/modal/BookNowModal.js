@@ -9,7 +9,7 @@ const BookNowModal = ({ product, setAllProducts }) => {
     const { user, loading } = useContext(AuthContext)
     const navigate = useNavigate()
 
-    const { productName, categoryName, categoryId, resalePrice, description, year, condition, number, location, image } = product;
+    const { productName, categoryName, categoryId, resalePrice, description, year, condition, number, location, image, _id } = product;
 
     const handlebooking = (event) => {
         event.preventDefault()
@@ -23,6 +23,7 @@ const BookNowModal = ({ product, setAllProducts }) => {
         const booking = {
             name,
             email,
+            productId: _id,
             productName,
             resalePrice,
             phone,

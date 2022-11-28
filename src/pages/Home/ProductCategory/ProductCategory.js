@@ -8,7 +8,6 @@ const ProductCategory = () => {
         fetch(`${process.env.REACT_APP_SERVER_URL}/categories`)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setCategories(data)
             })
     }, [])

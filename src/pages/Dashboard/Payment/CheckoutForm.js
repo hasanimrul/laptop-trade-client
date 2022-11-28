@@ -1,94 +1,110 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
-import { getPaymentIntent, savePayment } from '../../../api/products';
 
 const CheckoutForm = ({ booking }) => {
-    const navigate = useNavigate()
-    const stripe = useStripe()
-    const elements = useElements()
-    const [cardError, setCardError] = useState('')
-    const [processing, setProcessing] = useState(false)
-    const [transactionId, setTransactionId] = useState('')
-    const [clientSecret, setClientSecret] = useState('')
+    const [cardError, setCardError] = useState('');
+    const [success, setSuccess] = useState('');
+    const [processing, setProcessing] = useState(true);
+    const [transactionId, setTransactionId] = useState('');
+    const [clientSecret, setClientSecret] = useState("");
+    const stripe = useStripe();
+    const elements = useElements();
+    const { resalePrice, email, _id, name, productId } = booking;
 
-    const { price, name, email } = booking
-    console.log(clientSecret)
     useEffect(() => {
-        getPaymentIntent(price)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data?.clientSecret) {
-                    setClientSecret(data.clientSecret)
-                }
-            })
-    }, [price])
+        // Create PaymentIntent as soon as the page loads
+        fetch(`${process.env.REACT_APP_SERVER_URL}/create-payment-intent`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                // authorization: `bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify({ resalePrice }),
+        })
+            .then((res) => res.json())
+            .then((data) => setClientSecret(data.clientSecret));
+    }, [resalePrice]);
 
-
-
-    const handleSubmit = async event => {
-        event.preventDefault()
-
+    const handleSubmit = async (event) => {
+        event.preventDefault();
         if (!stripe || !elements) {
-            return
+            return;
         }
-
-        const card = elements.getElement(CardElement)
-
+        const card = elements.getElement(CardElement);
         if (card === null) {
-            return
+            return;
         }
 
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
-            card,
-        })
+            card
+        });
 
-        setCardError(error?.message || '')
-        setProcessing(true)
-        // confirm card payment
-        const { paymentIntent, error: intentError } =
-            await stripe.confirmCardPayment(clientSecret, {
+        if (error) {
+            console.log(error);
+            setCardError(error.message)
+        }
+        else {
+            setCardError('');
+        }
+        setSuccess('');
+        setProcessing(true);
+
+        const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
+            clientSecret,
+            {
                 payment_method: {
                     card: card,
                     billing_details: {
                         name: name,
-                        email: email,
+                        email: email
                     },
                 },
-            })
+            },
+        );
 
-        if (intentError) {
-            setCardError(intentError?.message)
-            setProcessing(false)
-        } else {
-            setCardError('')
-            setTransactionId(paymentIntent.id)
-            console.log(paymentIntent)
+        if (confirmError) {
+            setCardError(confirmError.message);
+            return;
+        }
+        console.log(paymentIntent);
+        if (paymentIntent.status === 'succeeded') {
 
-            //store payment on database
-            const data = {
+            // store payment info in the database
+            const payment = {
+                resalePrice,
                 transactionId: paymentIntent.id,
-                ...booking,
+                email,
+                bookingId: _id,
+                productId
             }
-            savePayment(data)
+
+            fetch(`${process.env.REACT_APP_SERVER_URL}/payments`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify(payment)
+            })
                 .then(res => res.json())
                 .then(data => {
-                    setProcessing(false)
-                    console.log(data)
-                    toast.success('Booking Successful!')
-                    navigate('/dashboard/my-orders')
+                    console.log(data);
+                    if (data.insertedId) {
+                        setSuccess('Congrats! Your payment completed');
+                        setTransactionId(paymentIntent.id)
+
+                    }
                 })
-                .catch(err => console.log(err))
+
         }
+        setProcessing(false);
     }
     return (
         <>
-            <form onSubmit={handleSubmit} className='my-10 max-w-lg'>
+            <form onSubmit={handleSubmit}>
                 <CardElement
-                    className='border p-4 rounded-md shadow-md'
                     options={{
                         style: {
                             base: {
@@ -104,17 +120,19 @@ const CheckoutForm = ({ booking }) => {
                         },
                     }}
                 />
-                <button
-                    className=' mt-4 btn rounded-md text-white px-4 py-1'
-                    type='submit'
-                    disabled={!stripe || !clientSecret || processing}
-                >
+                <button className='btn btn-sm mt-4' type="submit" disabled={!stripe || !clientSecret}>
                     Pay
                 </button>
             </form>
-            {cardError && <p className='text-red-500'>{cardError}</p>}
+            <p className='text-red-500'>{cardError}</p>
+            {
+                success && <div>
+                    <p className='text-green-500'>{success}</p>
+                    <p>Your transactionId: <span className='font-bold'>{transactionId}</span></p>
+                </div>
+            }
         </>
-    )
+    );
 };
 
 export default CheckoutForm;

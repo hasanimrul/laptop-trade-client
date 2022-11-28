@@ -54,6 +54,19 @@ export const productBooking = async productData => {
     return data
 }
 
+// get all bookings
+export const getAllBookings = async () => {
+    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/bookings`,
+        {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+    const data = await response.json()
+    return data
+}
+
 // get booked products by email
 export const getBookedProducts = async email => {
     const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/bookings/${email}`,

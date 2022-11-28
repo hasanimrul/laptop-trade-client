@@ -7,6 +7,7 @@ const MyOrders = () => {
     const [loading, setLoading] = useState()
     const [orders, setOrders] = useState([])
     const { user } = useContext(AuthContext)
+    console.log(orders);
 
     useEffect(() => {
         getProducts()
@@ -70,12 +71,12 @@ const MyOrders = () => {
                                             </td>
                                             <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
                                                 <p className='text-gray-900 whitespace-no-wrap'>
-                                                    ${order?.resalePrice}
+                                                    {order?.resalePrice}
                                                 </p>
                                             </td>
                                             <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
                                                 <p className='text-gray-900 whitespace-no-wrap'>
-                                                    <Link to={`/dashboard/payment/${order._id}`} className='btn'>Pay</Link>
+                                                    {order?.paid !== true ? <Link to={`/dashboard/payment/${order._id}`} className='btn'>Pay</Link> : <p className='font-extrabold text-green-900'>Paid</p>}
                                                 </p>
                                             </td>
 

@@ -10,7 +10,6 @@ import CheckoutForm from './CheckoutForm';
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 const Payment = () => {
     const booking = useLoaderData();
-    console.log(booking);
     const { productName, resalePrice } = booking
     const navigation = useNavigation();
 

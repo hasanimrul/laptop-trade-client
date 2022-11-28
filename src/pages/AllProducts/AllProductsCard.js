@@ -5,7 +5,6 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 const AllProductsCard = ({ product, setAllProducts }) => {
     const { user } = useContext(AuthContext)
     const [role, setRole] = useState(null)
-    console.log(role);
     useEffect(() => {
         getRole(user?.email)
             .then(data => {

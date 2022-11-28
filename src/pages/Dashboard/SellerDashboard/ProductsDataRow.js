@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { deleteProduct } from '../../../api/products';
+import { deleteProduct, getAllBookings } from '../../../api/products';
 import DeleteProduct from './DeleteProduct';
 
 const ProductsDataRow = ({ product, fetchProducts }) => {
     let [isOpen, setIsOpen] = useState(false)
+
 
     function openModal() {
         setIsOpen(true)
@@ -50,15 +51,52 @@ const ProductsDataRow = ({ product, fetchProducts }) => {
 
 
             <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                <span
-                    className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
-                >
+                {product?.paid === true ?
+
                     <span
-                        aria-hidden='true'
-                        className='absolute inset-0 bg-green-200 opacity-50 rounded-full'
-                    ></span>
-                    <span className='relative'>Available</span>
-                </span>
+                        className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
+                    >
+                        <span
+                            aria-hidden='true'
+                            className='absolute inset-0 bg-green-200 opacity-50 rounded-full'
+                        ></span>
+                        <span className='relative'>Sold</span>
+                    </span>
+                    :
+                    <span
+                        className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
+                    >
+                        <span
+                            aria-hidden='true'
+                            className='absolute inset-0 bg-green-200 opacity-50 rounded-full'
+                        ></span>
+                        <span className='relative'>Available</span>
+                    </span>
+                }
+            </td>
+            <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+                {product?.paid === true ?
+
+                    <span
+                        className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
+                    >
+                        <span
+                            aria-hidden='true'
+                            className='absolute inset-0 bg-green-200 opacity-50 rounded-full'
+                        ></span>
+                        <span className='relative'>Not available</span>
+                    </span>
+                    :
+                    <span
+                        className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
+                    >
+                        <span
+                            aria-hidden='true'
+                            className='absolute inset-0 bg-green-200 opacity-50 rounded-full'
+                        ></span>
+                        <span className='relative'>Advertise</span>
+                    </span>
+                }
             </td>
             <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
                 <span
