@@ -20,7 +20,7 @@ export const getAllUsers = async role => {
         {
             method: 'GET',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
             },
         })
     const users = await response.json()
@@ -33,7 +33,7 @@ export const getRole = async email => {
         {
             method: 'GET',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
             }
         })
     const user = await response.json()
