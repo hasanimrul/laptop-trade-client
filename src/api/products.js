@@ -4,7 +4,6 @@ export const addProduct = async productData => {
         method: 'POST',
         headers: {
             'content-type': 'application/json',
-            authorization: `Bearer ${localStorage.getItem('access-token')}`,
         },
         body: JSON.stringify(productData),
     })
@@ -21,7 +20,6 @@ export const getProducts = async email => {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
-                authorization: `Bearer ${localStorage.getItem('access-token')}`,
             },
         }
     )
@@ -36,7 +34,6 @@ export const deleteProduct = async id => {
         method: 'DELETE',
         headers: {
             'content-type': 'application/json',
-            authorization: `Bearer ${localStorage.getItem('access-token')}`,
         },
     })
     const result = await response.json()
@@ -64,7 +61,6 @@ export const getAllBookings = async () => {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
-                authorization: `Bearer ${localStorage.getItem('access-token')}`,
             }
         })
     const data = await response.json()
@@ -92,7 +88,6 @@ export const getSingleBookings = async id => {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
-                authorization: `Bearer ${localStorage.getItem('access-token')}`,
             }
         })
     const data = await response.json()
@@ -108,7 +103,6 @@ export const getPaymentIntent = async price => {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                authorization: `Bearer ${localStorage.getItem('access-token')}`,
             },
             body: JSON.stringify({ price }),
         }
@@ -125,7 +119,6 @@ export const savePayment = async payment => {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                authorization: `Bearer ${localStorage.getItem('access-token')}`,
             },
             body: JSON.stringify(payment)
         })

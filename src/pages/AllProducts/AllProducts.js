@@ -8,7 +8,7 @@ const AllProducts = () => {
     const [allProducts, setAllProducts] = useState([])
 
     return (
-        <div className='grid grid-cols-2'>
+        <div className='grid grid-cols-3 gap-5'>
             {
                 products.map(product => <AllProductsCard
                     key={product._id}
