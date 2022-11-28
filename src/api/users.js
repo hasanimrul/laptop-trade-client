@@ -13,10 +13,10 @@ export const saveUser = async (name, email, role) => {
             console.log('save user', data)
         })
 }
-//  get all users
+//  get all users by role
 
-export const getAllUsers = async () => {
-    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/users`,
+export const getAllUsers = async role => {
+    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/users/${role}`,
         {
             method: 'GET',
             headers: {

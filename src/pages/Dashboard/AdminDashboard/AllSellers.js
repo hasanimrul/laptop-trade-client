@@ -1,14 +1,13 @@
-
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { deleteUser, getAllUsers } from '../../../api/users';
 import SmallSpinner from '../../../components/Spinner/SmallSpinner';
 import DeleteUser from './DeleteUser';
 
-const AllUsers = () => {
+const AllSellers = () => {
     const [loading, setLoading] = useState(false)
     const [users, setUsers] = useState([])
-    const role = 'Buyer'
+    const role = 'Seller'
     console.log(users);
     useEffect(() => {
         getUsers(role)
@@ -116,4 +115,4 @@ const AllUsers = () => {
     )
 };
 
-export default AllUsers;
+export default AllSellers;

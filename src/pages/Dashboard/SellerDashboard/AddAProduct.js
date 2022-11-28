@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { useLoaderData } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { imageUpload } from '../../../api/imageUpload';
 import { addProduct } from '../../../api/products';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
@@ -8,9 +8,8 @@ import AddProductsForm from './AddProductsForm';
 
 const AddAProduct = () => {
     const { loading, user, setLoading } = useContext(AuthContext)
-
+    const navigate = useNavigate()
     const handleSubmit = (event) => {
-
         event.preventDefault()
         const productName = event.target.name.value
         const category = event.target.category.value
@@ -51,7 +50,7 @@ const AddAProduct = () => {
                     .then(data => {
                         toast.success('Product added')
                         event.target.reset()
-                        // setLoading(false)
+                        navigate('/dashboard/manage-products')
                     })
             })
     }

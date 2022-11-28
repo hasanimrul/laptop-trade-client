@@ -10,10 +10,11 @@ const AdminRoute = ({ children }) => {
     const [roleLoading, setRoleLoading] = useState(true)
     useEffect(() => {
         setRoleLoading(true)
-        getRole(user?.email).then(data => {
-            setRole(data)
-            setRoleLoading(false)
-        })
+        getRole(user?.email)
+            .then(data => {
+                setRole(data)
+                setRoleLoading(false)
+            })
     }, [user])
 
     if (loading || roleLoading) {
