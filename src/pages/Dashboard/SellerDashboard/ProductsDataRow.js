@@ -54,11 +54,11 @@ const ProductsDataRow = ({ product, fetchProducts }) => {
                 {product?.paid === true ?
 
                     <span
-                        className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
+                        className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-red-900 leading-tight'
                     >
                         <span
                             aria-hidden='true'
-                            className='absolute inset-0 bg-green-200 opacity-50 rounded-full'
+                            className='absolute inset-0 bg-red-200 opacity-50 rounded-full'
                         ></span>
                         <span className='relative'>Sold</span>
                     </span>
@@ -78,11 +78,11 @@ const ProductsDataRow = ({ product, fetchProducts }) => {
                 {product?.paid === true ?
 
                     <span
-                        className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
+                        className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-red-900 leading-tight'
                     >
                         <span
                             aria-hidden='true'
-                            className='absolute inset-0 bg-green-200 opacity-50 rounded-full'
+                            className='absolute inset-0 bg-red-500 opacity-50 rounded-full'
                         ></span>
                         <span className='relative'>Not available</span>
                     </span>
@@ -107,7 +107,7 @@ const ProductsDataRow = ({ product, fetchProducts }) => {
                         aria-hidden='true'
                         className='absolute inset-0 bg-red-200 opacity-50 rounded-full'
                     ></span>
-                    <span className='relative'>Delete</span>
+                    <span className='relative'>X</span>
                 </span>
                 <DeleteProduct
                     isOpen={isOpen}

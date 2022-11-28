@@ -26,7 +26,7 @@ const Navbar = () => {
             </div>
 
             <div className="navbar-end">
-
+                <Link className='btn btn-primary mr-3' to='/blog'>Blog</Link>
                 {user?.email ?
                     <>
                         <Link to='/' onClick={() => logOut()} className="btn btn-primary mr-3">log out</Link>
