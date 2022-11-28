@@ -7,6 +7,7 @@ const ManageProducts = () => {
     const { user } = useContext(AuthContext)
     const [products, setProducts] = useState([])
     const fetchProducts = () => getProducts(user?.email).then(data => setProducts(data))
+    console.log(products);
 
     useEffect(() => {
         fetchProducts()

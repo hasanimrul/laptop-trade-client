@@ -118,7 +118,7 @@ const AddProductsForm = ({ handleSubmit, loading }) => {
                         <div className='flex space-x-4 items-center'>
                             <label
                                 htmlFor='image'
-                                className='p-3 text-center rounded-md  text-gray-500 font-bold border  border-green-600 hover:bg-gradient-to-r hover:from-blue-500 hover:to-green-400 hover:border-white hover:text-white'
+                                className='p-3 text-center rounded-md  text-gray-500 font-bold border    '
                             >
                                 <input
                                     type='file'
