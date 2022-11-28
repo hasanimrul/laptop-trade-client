@@ -22,9 +22,9 @@ const AllProductsCard = ({ product, setAllProducts }) => {
                     <div className="card w-full bg-base-100 shadow-xl">
                         <figure className="px-10 pt-10"><img src={image} alt="" /></figure>
                         <div className="card-body">
-                            <h2 className="card-title">
+                            <h2 className="card-title justify-between">
                                 {productName}
-                                <span className='text-sm'>Condition:</span><div className="badge badge-secondary">{condition}</div>
+                                <><span className='text-sm'>Condition:</span><div className="badge badge-secondary">{condition}</div></>
                             </h2>
                             <p>{description}</p>
                             <div className='flex justify-between items-center gap-5'>
