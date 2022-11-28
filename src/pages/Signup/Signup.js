@@ -63,7 +63,11 @@ const Signup = () => {
     const handleGoogleSignin = () => {
         signInWithGoogle()
             .then(result => {
-                console.log(result.user)
+                const name = result.user.displayName
+                const email = result.user.email
+                const role = 'Buyer'
+                saveUser(name, email, role)
+                toast.success('Sign up Successful')
                 setLoading(false)
                 navigate(from, { replace: true })
             })

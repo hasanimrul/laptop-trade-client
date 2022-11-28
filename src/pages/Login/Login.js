@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { saveUser } from '../../api/users';
 import SmallSpinner from '../../components/Spinner/SmallSpinner';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
@@ -34,7 +35,10 @@ const Login = () => {
     const handleGoogleSignin = () => {
         signInWithGoogle()
             .then(result => {
-                console.log(result.user)
+                const name = result.user.displayName
+                const email = result.user.email
+                const role = 'Buyer'
+                saveUser(name, email, role)
                 toast.success('Login Successful!')
                 setLoading(false)
                 navigate(from, { replace: true })

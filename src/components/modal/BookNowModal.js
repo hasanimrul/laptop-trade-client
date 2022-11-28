@@ -57,8 +57,8 @@ const BookNowModal = ({ product, setAllProducts }) => {
                         <input name='email' type="email" defaultValue={user?.email} disabled placeholder="email" className="input input-bordered w-full" />
                         <input name='productName' type="text" defaultValue={productName} disabled className="input input-bordered w-full" />
                         <input name='resalePrice' type="text" defaultValue={resalePrice} disabled className="input input-bordered w-full" />
-                        <input name='phone' type="text" placeholder="phone number" className="input input-bordered w-full" />
-                        <input name='location' type="text" placeholder="meeting location" className="input input-bordered w-full" />
+                        <input name='phone' type="text" placeholder="phone number" className="input input-bordered w-full" required />
+                        <input name='location' type="text" placeholder="meeting location" className="input input-bordered w-full" required />
 
                         <input type="submit" value='Submit' className="btn btn-success bg-gradient-to-r from-cyan-500 to-blue-500 text-white uppercase w-full" />
                     </form>
