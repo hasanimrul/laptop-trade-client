@@ -39,11 +39,16 @@ export const router = createBrowserRouter([
                 path: '/blog',
                 element: <Blog />
             },
+            {
+                path: '/all-products',
+                element: <PrivateRoute><AllProducts /></PrivateRoute>,
+                loader: () => fetch('https://laptop-trade-server.vercel.app/all-products')
+            },
 
             {
                 path: '/category/:id',
                 element: <PrivateRoute><AllProducts /></PrivateRoute>,
-                loader: ({ params }) => fetch(`${process.env.REACT_APP_SERVER_URL}/category/${params.id}`)
+                loader: ({ params }) => fetch(`https://laptop-trade-server.vercel.app/category/${params.id}`)
             }
         ]
     },
@@ -74,7 +79,7 @@ export const router = createBrowserRouter([
             {
                 path: 'payment/:id',
                 element: <Payment />,
-                loader: ({ params }) => fetch(`${process.env.REACT_APP_SERVER_URL}/booking/${params.id}`)
+                loader: ({ params }) => fetch(`https://laptop-trade-server.vercel.app/booking/${params.id}`)
             },
         ]
     },

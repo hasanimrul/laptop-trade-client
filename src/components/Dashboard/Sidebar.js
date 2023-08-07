@@ -21,7 +21,7 @@ const Sidebar = ({ role, loading }) => {
             <div className='bg-gray-100 text-gray-800 flex justify-between md:hidden'>
                 <div>
                     <div className='block cursor-pointer p-4 font-bold'>
-                        <Link to='/'>Laptop Trade</Link>
+                        <Link to='/'>iMart</Link>
                     </div>
                 </div>
 
@@ -41,7 +41,7 @@ const Sidebar = ({ role, loading }) => {
                     {/* Branding & Profile Info */}
                     <div>
                         <h2 className='text-3xl cursor-pointer font-semibold text-center text-gray-800 '>
-                            <Link to='/'> Laptop Trade</Link>
+                            <Link to='/'> iMart</Link>
                         </h2>
                         <div className='flex flex-col items-center mt-6 -mx-2'>
                             <Link to='/dashboard'>

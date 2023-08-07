@@ -6,17 +6,25 @@ import AllProductsCard from './AllProductsCard';
 const AllProducts = () => {
     const products = useLoaderData()
     const [allProducts, setAllProducts] = useState([])
+    console.log(products);
 
     return (
-        <div className='grid grid-cols-3 gap-5'>
+        <div>
             {
-                products.map(product => <AllProductsCard
-                    key={product._id}
-                    product={product}
-                    setAllProducts={setAllProducts}
-                />)
+                products ?
+                    <div className='grid grid-cols-3 gap-5 container mx-auto'>
+                        {
+                            products.map(product => <AllProductsCard
+                                key={product._id}
+                                product={product}
+                                setAllProducts={setAllProducts}
+                            />)
+                        }
+                        <BookNowModal product={allProducts} setAllProducts={setAllProducts} />
+                    </div>
+                    :
+                    <h1 className='text-blue-600 text-3xl'>No item is available </h1>
             }
-            <BookNowModal product={allProducts} setAllProducts={setAllProducts} />
         </div>
     );
 };

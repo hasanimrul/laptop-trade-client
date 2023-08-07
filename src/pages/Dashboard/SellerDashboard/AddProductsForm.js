@@ -25,9 +25,12 @@ const AddProductsForm = ({ handleSubmit, loading }) => {
                         </div>
                         <select name='category' className="select select-bordered w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-gray-900 bg-gray-200 text-gray-900 w-full">
                             <option disabled selected>Category</option>
-                            <option>Apple-637ef649345d495b77336546</option>
-                            <option>Asus-637ef649345d495b77336547</option>
-                            <option>Lenovo-637ef649345d495b77336548</option>
+                            <option>Electronics-647303cc8ecda4c9fae8ed9b</option>
+                            <option>Fashion-647303cc8ecda4c9fae8ed9c</option>
+                            <option>Home & Kitchen-647303cc8ecda4c9fae8ed9d</option>
+                            <option>Books-647303cc8ecda4c9fae8ed9e</option>
+                            <option>Sports & Outdoors-647303cc8ecda4c9fae8ed9f</option>
+                            <option>Beauty & Personal Care-647303cc8ecda4c9fae8eda0</option>
                         </select>
                         <div className='space-y-1 text-sm'>
                             <label htmlFor='originalPrice' className='block text-gray-600'>
